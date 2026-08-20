@@ -48,22 +48,14 @@ function ProfileImage() {
       transition={{ delay: 0.3, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
       className="relative flex items-center justify-center"
     >
-      <div
-        className="absolute w-[320px] h-[320px] sm:w-[380px] sm:h-[380px] lg:w-[420px] lg:h-[420px] rounded-full animate-spin-slow motion-reduce:animate-none"
-        style={{
-          background: 'conic-gradient(from 0deg, #3B82F6, #818CF8, #38BDF8, #3B82F6)',
-          filter: 'blur(4px)',
-          opacity: 0.65,
-        }}
-      />
-
-      <div className="relative w-[310px] h-[310px] sm:w-[370px] sm:h-[370px] lg:w-[410px] lg:h-[410px] rounded-full glass-strong flex items-center justify-center p-1">
-        <img
-          src="/profile.png"
-          alt={personalInfo.name}
-          className="w-full h-full rounded-full object-cover object-top"
-          style={{ boxShadow: '0 0 48px rgba(59,130,246,0.25)' }}
-        />
+      <div className="portrait-aura cursor-pointer">
+        <div className="portrait-aura__frame w-[310px] h-[310px] sm:w-[370px] sm:h-[370px] lg:w-[410px] lg:h-[410px]">
+          <img
+            src="/profile.png"
+            alt={personalInfo.name}
+            className="w-full h-full rounded-full object-cover object-top"
+          />
+        </div>
       </div>
     </motion.div>
   );

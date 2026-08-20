@@ -1,44 +1,40 @@
 'use client';
 
-import { useState, useId } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { skills } from '../../data/portfolio';
 import { SectionContainer, SectionHeading } from '../ui/SectionContainer';
+import { getTechIcon } from '../ui/TechIcons';
 
 const categories = Object.keys(skills);
 
 function SkillCard({ skill }) {
-  const uid = useId();
-  const gradientId = `grad-${uid}`;
-  const circumference = 2 * Math.PI * 36;
-  const offset = circumference - (skill.level / 100) * circumference;
+  const { Icon, color } = getTechIcon(skill.name);
 
   return (
-    <div className="glass rounded-xl p-5 sm:p-6 card-hover group cursor-pointer">
+    <div className="glass rounded-xl p-5 sm:p-6 card-hover group cursor-default">
       <div className="flex items-center gap-4">
-        <div className="relative w-16 h-16 shrink-0">
-          <svg className="w-full h-full -rotate-90" viewBox="0 0 80 80">
-            <circle cx="40" cy="40" r="36" fill="none" stroke="rgba(255,255,255,0.05)" strokeWidth="4" />
-            <circle cx="40" cy="40" r="36" fill="none" stroke={`url(#${gradientId})`} strokeWidth="4" strokeLinecap="round" strokeDasharray={circumference} strokeDashoffset={offset} />
-            <defs>
-              <linearGradient id={gradientId} x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#00F5FF" />
-                <stop offset="100%" stopColor="#7C3AED" />
-              </linearGradient>
-            </defs>
-          </svg>
-          <div className="absolute inset-0 flex items-center justify-center">
-            <span className="text-xs font-mono font-bold text-white">{skill.level}%</span>
-          </div>
+        <div
+          className="relative w-14 h-14 shrink-0 rounded-xl flex items-center justify-center border border-white/10 transition-all duration-300 group-hover:scale-110 group-hover:border-primary/30"
+          style={{
+            background: `linear-gradient(135deg, ${color}22, ${color}08)`,
+            boxShadow: `0 0 0 rgba(0,0,0,0)`,
+          }}
+        >
+          <Icon
+            size={28}
+            style={{ color }}
+            className="transition-transform duration-300 group-hover:scale-110"
+            aria-hidden
+          />
         </div>
         <div className="flex-1 min-w-0">
-          <h4 className="text-white font-semibold text-sm group-hover:text-primary transition-colors">{skill.name}</h4>
-          <div className="flex items-center gap-2.5 mt-2">
-            <span className="text-xs text-gray-500 font-mono shrink-0">{skill.years}yr</span>
-            <div className="flex-1 h-1.5 bg-white/5 rounded-full overflow-hidden">
-              <div className="h-full bg-gradient-to-r from-primary to-secondary rounded-full" style={{ width: `${skill.level}%` }} />
-            </div>
-          </div>
+          <h4 className="text-white font-semibold text-sm group-hover:text-primary transition-colors truncate">
+            {skill.name}
+          </h4>
+          <p className="text-xs text-gray-500 font-mono mt-1.5">
+            {skill.years}+ {skill.years === 1 ? 'year' : 'years'} experience
+          </p>
         </div>
       </div>
     </div>
@@ -75,14 +71,14 @@ export default function Skills() {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
           transition={{ duration: 0.3 }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5"
         >
           {skills[activeCategory].map((skill, i) => (
             <motion.div
               key={skill.name}
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.35, delay: i * 0.05, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: 0.35, delay: i * 0.04, ease: [0.22, 1, 0.36, 1] }}
             >
               <SkillCard skill={skill} />
             </motion.div>

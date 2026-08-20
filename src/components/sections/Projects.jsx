@@ -6,6 +6,7 @@ import { ExternalLink, ArrowRight, Sparkles } from 'lucide-react';
 import { GithubIcon as Github } from '../ui/Icons';
 import { projects } from '../../data/portfolio';
 import { SectionContainer, SectionHeading } from '../ui/SectionContainer';
+import { TechChip } from '../ui/TechIcons';
 
 function ProjectCard({ project, featured = false }) {
   return (
@@ -66,12 +67,10 @@ function ProjectCard({ project, featured = false }) {
 
         <div className="flex flex-wrap gap-2 mb-6">
           {project.techStack.slice(0, featured ? 6 : 5).map((tech) => (
-            <span key={tech} className="px-3 py-1.5 rounded-lg bg-primary/10 text-primary text-xs font-mono border border-primary/10">
-              {tech}
-            </span>
+            <TechChip key={tech} name={tech} size="sm" />
           ))}
           {project.techStack.length > (featured ? 6 : 5) && (
-            <span className="px-3 py-1.5 rounded-lg bg-white/5 text-gray-500 text-xs font-mono">
+            <span className="inline-flex items-center px-2.5 py-1.5 rounded-xl bg-white/5 text-gray-500 text-[11px] font-mono border border-white/10">
               +{project.techStack.length - (featured ? 6 : 5)}
             </span>
           )}

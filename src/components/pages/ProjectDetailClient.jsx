@@ -12,6 +12,7 @@ import {
   Rocket,
 } from 'lucide-react';
 import { GithubIcon as Github } from '@/components/ui/Icons';
+import { TechChip } from '@/components/ui/TechIcons';
 
 function Sidebar({ project }) {
   return (
@@ -20,12 +21,7 @@ function Sidebar({ project }) {
         <h3 className="font-display text-sm font-bold text-white mb-4 uppercase tracking-wider">Tech Stack</h3>
         <div className="flex flex-wrap gap-2">
           {project.techStack.map((tech) => (
-            <span
-              key={tech}
-              className="px-3 py-1.5 rounded-lg bg-primary/10 text-primary text-xs font-mono border border-primary/10"
-            >
-              {tech}
-            </span>
+            <TechChip key={tech} name={tech} size="sm" />
           ))}
         </div>
       </div>
