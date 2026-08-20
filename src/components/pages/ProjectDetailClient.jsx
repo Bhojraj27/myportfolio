@@ -26,18 +26,25 @@ function Sidebar({ project }) {
         </div>
       </div>
 
-      <div className="glass-strong rounded-2xl p-6">
-        <h3 className="font-display text-sm font-bold text-white mb-4 uppercase tracking-wider">Metrics</h3>
-        <div className="space-y-3">
-          {project.metrics &&
-            Object.entries(project.metrics).map(([key, val]) => (
-              <div key={key} className="flex justify-between items-center text-sm">
-                <span className="text-gray-500 capitalize">{key}</span>
-                <span className="text-primary font-mono">{val}</span>
-              </div>
-            ))}
-        </div>
-      </div>
+      {(() => {
+        const realMetrics = project.metrics
+          ? Object.entries(project.metrics).filter(([key]) => !['performance', 'loadTime'].includes(key))
+          : [];
+        if (realMetrics.length === 0) return null;
+        return (
+          <div className="glass-strong rounded-2xl p-6">
+            <h3 className="font-display text-sm font-bold text-white mb-4 uppercase tracking-wider">Metrics</h3>
+            <div className="space-y-3">
+              {realMetrics.map(([key, val]) => (
+                <div key={key} className="flex justify-between items-center text-sm">
+                  <span className="text-slate-400 capitalize">{key}</span>
+                  <span className="text-primary font-mono">{val}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        );
+      })()}
 
       <div className="glass-strong rounded-2xl p-6">
         <h3 className="font-display text-sm font-bold text-white mb-4 uppercase tracking-wider">Deployment</h3>

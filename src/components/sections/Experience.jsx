@@ -6,8 +6,8 @@ import { ChevronDown, Briefcase, Calendar, CheckCircle2 } from 'lucide-react';
 import { experience } from '../../data/portfolio';
 import { SectionContainer, SectionHeading } from '../ui/SectionContainer';
 
-function ExperienceCard({ exp }) {
-  const [expanded, setExpanded] = useState(false);
+function ExperienceCard({ exp, defaultExpanded = false }) {
+  const [expanded, setExpanded] = useState(defaultExpanded);
 
   return (
     <div className="relative">
@@ -22,14 +22,20 @@ function ExperienceCard({ exp }) {
           <button
             onClick={() => setExpanded(!expanded)}
             className="w-full p-5 sm:p-6 lg:p-7 text-left flex items-center justify-between gap-4"
+            aria-expanded={expanded}
           >
             <div className="min-w-0 flex-1">
               <h3 className="font-display text-lg lg:text-xl font-bold text-white mb-1">{exp.role}</h3>
               <p className="text-primary text-sm font-semibold mb-2">{exp.company}</p>
-              <div className="flex items-center gap-2 text-gray-500 text-xs font-mono">
+              <div className="flex items-center gap-2 text-slate-400 text-xs font-mono">
                 <Calendar size={12} />
                 <span>{exp.duration}</span>
               </div>
+              {!expanded && exp.achievements?.length > 0 && (
+                <p className="text-slate-300 text-sm mt-3 line-clamp-2">
+                  {exp.achievements[0]}
+                </p>
+              )}
             </div>
             <motion.div animate={{ rotate: expanded ? 180 : 0 }} transition={{ duration: 0.3 }} className="text-gray-500 shrink-0">
               <ChevronDown size={20} />
@@ -100,8 +106,8 @@ export default function Experience() {
     <SectionContainer id="experience">
       <SectionHeading tag="Career" title="Work" highlight="Experience" />
       <div className="max-w-4xl mx-auto space-y-6 lg:space-y-8">
-        {experience.map((exp) => (
-          <ExperienceCard key={exp.id} exp={exp} />
+        {experience.map((exp, index) => (
+          <ExperienceCard key={exp.id} exp={exp} defaultExpanded={index === 0} />
         ))}
       </div>
     </SectionContainer>

@@ -12,7 +12,7 @@ function ProjectCard({ project, featured = false }) {
   return (
     <div
       className={`group glass-strong rounded-2xl overflow-hidden card-hover neon-border flex flex-col h-full ${
-        featured ? 'ring-1 ring-primary/20' : ''
+        featured ? 'ring-1 ring-primary/25' : ''
       }`}
     >
       <div className={`relative overflow-hidden bg-gradient-to-br from-primary/10 via-secondary/5 to-accent/10 ${
@@ -23,13 +23,12 @@ function ProjectCard({ project, featured = false }) {
             src={project.image}
             alt={project.title}
             loading="lazy"
-            className="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-110"
+            className="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105"
           />
         ) : (
           <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-secondary/10 to-navy" />
         )}
         <div className="absolute inset-0 bg-gradient-to-t from-navy-dark via-navy-dark/50 to-transparent" />
-        <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-primary/5" />
 
         {featured && (
           <div className="absolute top-4 left-4 flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-primary/15 border border-primary/30 text-primary text-xs font-mono backdrop-blur-sm">
@@ -38,25 +37,37 @@ function ProjectCard({ project, featured = false }) {
           </div>
         )}
 
+        <div className="absolute top-4 right-4 flex gap-2">
+          {project.liveUrl && project.liveUrl !== '#' && (
+            <a
+              href={project.liveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`${project.title} live demo`}
+              className="w-9 h-9 rounded-lg glass flex items-center justify-center text-gray-200 hover:text-primary transition-all hover:scale-105"
+            >
+              <ExternalLink size={16} />
+            </a>
+          )}
+          {project.githubUrl && project.githubUrl !== '#' && (
+            <a
+              href={project.githubUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`${project.title} source code`}
+              className="w-9 h-9 rounded-lg glass flex items-center justify-center text-gray-200 hover:text-primary transition-all hover:scale-105"
+            >
+              <Github size={16} />
+            </a>
+          )}
+        </div>
+
         <div className="absolute bottom-4 left-5 right-5">
           <h3 className={`font-display font-bold text-white group-hover:text-primary transition-colors leading-tight ${
             featured ? 'text-xl sm:text-2xl' : 'text-lg sm:text-xl'
           }`}>
             {project.title}
           </h3>
-        </div>
-
-        <div className="absolute top-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0">
-          {project.liveUrl && project.liveUrl !== '#' && (
-            <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-lg glass flex items-center justify-center text-gray-300 hover:text-primary transition-all hover:scale-110">
-              <ExternalLink size={16} />
-            </a>
-          )}
-          {project.githubUrl && project.githubUrl !== '#' && (
-            <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-lg glass flex items-center justify-center text-gray-300 hover:text-primary transition-all hover:scale-110">
-              <Github size={16} />
-            </a>
-          )}
         </div>
       </div>
 
@@ -76,15 +87,7 @@ function ProjectCard({ project, featured = false }) {
           )}
         </div>
 
-        <div className="flex items-center justify-between gap-3 mt-auto pt-4 border-t border-white/5">
-          <div className="min-w-0">
-            {project.metrics && (
-              <span className="text-xs font-mono text-gray-500">
-                Perf: <span className="text-primary">{project.metrics.performance}</span>
-                {project.metrics.loadTime && <> · <span className="text-primary">{project.metrics.loadTime}</span></>}
-              </span>
-            )}
-          </div>
+        <div className="flex items-center justify-end gap-3 mt-auto pt-4 border-t border-white/5">
           <Link href={`/projects/${project.id}`} className="flex items-center gap-2 text-sm text-primary hover:text-accent transition-colors group/link shrink-0">
             View Case Study
             <ArrowRight size={14} className="group-hover/link:translate-x-1 transition-transform" />

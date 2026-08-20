@@ -33,10 +33,24 @@ export default function PortfolioShell({ children, showFooter = true }) {
 
   const handleLoadDone = useCallback(() => {
     setLoading(false);
+    try {
+      sessionStorage.setItem('portfolio-seen', '1');
+    } catch {
+      /* ignore */
+    }
   }, []);
 
   useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 3500);
+    try {
+      if (sessionStorage.getItem('portfolio-seen') === '1') {
+        setLoading(false);
+        return undefined;
+      }
+    } catch {
+      /* ignore */
+    }
+
+    const timer = setTimeout(() => setLoading(false), 1400);
     return () => clearTimeout(timer);
   }, []);
 

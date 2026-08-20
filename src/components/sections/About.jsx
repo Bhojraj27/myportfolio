@@ -1,25 +1,14 @@
 'use client';
 
 import { personalInfo, education } from '../../data/portfolio';
-import countupPkg from 'react-countup';
-const CountUp = countupPkg.default || countupPkg;
-import { Code2, Server, Database, Cloud, Brain, Rocket } from 'lucide-react';
+import { Code2, Server, Cloud, Brain } from 'lucide-react';
 import { SectionContainer, SectionHeading } from '../ui/SectionContainer';
 
-const stats = [
-  { label: 'Years Experience', value: personalInfo.yearsOfExperience, suffix: '+', icon: Rocket },
-  { label: 'Projects Delivered', value: 5, suffix: '+', icon: Code2 },
-  { label: 'Technologies', value: 25, suffix: '+', icon: Database },
-  { label: 'Active Users', value: 500, suffix: '+', icon: Cloud },
-];
-
 const highlights = [
-  { icon: Code2, title: 'Clean Code', desc: 'Maintainable, scalable code' },
-  { icon: Server, title: 'Full Stack', desc: 'End-to-end development' },
-  { icon: Database, title: 'Data Design', desc: 'Optimized architectures' },
-  { icon: Cloud, title: 'Cloud & DevOps', desc: 'AWS, CI/CD, Git workflows' },
-  { icon: Brain, title: 'AI Integration', desc: 'Hands-on LLM & RAG experience' },
-  { icon: Rocket, title: 'Performance', desc: 'Speed and scale' },
+  { icon: Server, title: 'Full Stack delivery', desc: 'React, Node, APIs end-to-end' },
+  { icon: Cloud, title: 'Cloud & production', desc: 'AWS, CI/CD, monitoring' },
+  { icon: Brain, title: 'AI in real products', desc: 'OpenAI, Gemini, RAG pipelines' },
+  { icon: Code2, title: 'SaaS at scale', desc: '500+ users, PWAs, billing' },
 ];
 
 export default function About() {
@@ -41,57 +30,41 @@ export default function About() {
             </div>
           </div>
 
-          <p className="text-gray-300 text-base leading-relaxed mb-4">{personalInfo.summary}</p>
-          <p className="text-gray-400 text-sm leading-relaxed mb-6">{personalInfo.philosophy}</p>
+          <p className="text-slate-200 text-base leading-relaxed mb-4">{personalInfo.summary}</p>
+          <p className="text-slate-400 text-sm leading-relaxed mb-6">{personalInfo.philosophy}</p>
 
-          <div className="space-y-3 pt-4 border-t border-white/5">
+          <div className="space-y-3 pt-4 border-t border-white/10">
             <div className="flex items-center gap-3 text-sm">
-              <span className="text-primary font-mono">{'>'}</span>
-              <span className="text-gray-500 w-20 shrink-0">Location:</span>
-              <span className="text-gray-300">{personalInfo.location}</span>
+              <span className="text-slate-400 w-20 shrink-0">Location</span>
+              <span className="text-slate-200">{personalInfo.location}</span>
             </div>
             <div className="flex items-center gap-3 text-sm">
-              <span className="text-primary font-mono">{'>'}</span>
-              <span className="text-gray-500 w-20 shrink-0">Email:</span>
-              <span className="text-gray-300">{personalInfo.email}</span>
+              <span className="text-slate-400 w-20 shrink-0">Email</span>
+              <a href={`mailto:${personalInfo.email}`} className="text-slate-200 hover:text-primary transition-colors">
+                {personalInfo.email}
+              </a>
             </div>
             {education.map((edu, i) => (
-              <div key={i} className="flex items-center gap-3 text-sm">
-                <span className="text-primary font-mono">{'>'}</span>
-                <span className="text-gray-500 w-20 shrink-0">Education:</span>
-                <span className="text-gray-300">{edu.degree}</span>
+              <div key={i} className="flex items-start gap-3 text-sm">
+                <span className="text-slate-400 w-20 shrink-0">Education</span>
+                <span className="text-slate-200">{edu.degree}</span>
               </div>
             ))}
           </div>
         </div>
 
-        <div className="space-y-8">
-          <div className="grid grid-cols-2 gap-4">
-            {stats.map((stat) => (
-              <div key={stat.label} className="glass rounded-xl p-5 sm:p-6 text-center card-hover">
-                <stat.icon size={24} className="text-primary mx-auto mb-3" />
-                <div className="text-2xl sm:text-3xl font-display font-bold text-white mb-2">
-                  <CountUp end={stat.value} duration={2} />
-                  <span className="text-primary">{stat.suffix}</span>
-                </div>
-                <div className="text-xs text-gray-500 font-mono">{stat.label}</div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {highlights.map((item) => (
+            <div key={item.title} className="glass rounded-xl p-5 flex items-start gap-4 card-hover group">
+              <div className="w-10 h-10 rounded-lg bg-primary/15 border border-primary/20 flex items-center justify-center shrink-0 group-hover:bg-primary/25 transition-colors">
+                <item.icon size={18} className="text-primary" />
               </div>
-            ))}
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {highlights.map((item) => (
-              <div key={item.title} className="glass rounded-xl p-5 flex items-start gap-4 card-hover group">
-                <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary/20 transition-colors">
-                  <item.icon size={18} className="text-primary" />
-                </div>
-                <div className="min-w-0">
-                  <h4 className="text-white text-sm font-semibold mb-1">{item.title}</h4>
-                  <p className="text-gray-500 text-xs leading-relaxed">{item.desc}</p>
-                </div>
+              <div className="min-w-0">
+                <h4 className="text-white text-sm font-semibold mb-1">{item.title}</h4>
+                <p className="text-slate-400 text-xs leading-relaxed">{item.desc}</p>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
       </div>
     </SectionContainer>

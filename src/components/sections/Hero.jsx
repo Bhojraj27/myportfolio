@@ -1,44 +1,12 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { TypeAnimation } from 'react-type-animation';
 import { ChevronDown, ExternalLink, Mail, Download } from 'lucide-react';
 import { GithubIcon as Github, LinkedinIcon as Linkedin } from '../ui/Icons';
 import { personalInfo } from '../../data/portfolio';
 import { scrollToSection } from '../../utils/scrollTo';
 
 const scrollTo = (href) => scrollToSection(href);
-
-function FloatingBubbles() {
-  const bubbles = [
-    { size: 100, top: '8%', left: '4%', delay: 0, duration: 10 },
-    { size: 60, top: '55%', left: '3%', delay: 2, duration: 12 },
-    { size: 140, top: '15%', right: '2%', delay: 1, duration: 14 },
-    { size: 45, top: '70%', right: '6%', delay: 3, duration: 9 },
-  ];
-
-  return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none motion-reduce:hidden">
-      {bubbles.map((b, i) => (
-        <motion.div
-          key={i}
-          className="absolute rounded-full"
-          style={{
-            width: b.size,
-            height: b.size,
-            top: b.top,
-            left: b.left,
-            right: b.right,
-            background: 'radial-gradient(circle at 30% 30%, rgba(59,130,246,0.1), rgba(129,140,248,0.05), transparent 70%)',
-            border: '1px solid rgba(59,130,246,0.08)',
-          }}
-          animate={{ y: [0, -24, 0, 16, 0], x: [0, 8, -8, 4, 0] }}
-          transition={{ duration: b.duration, delay: b.delay, repeat: Infinity, ease: 'easeInOut' }}
-        />
-      ))}
-    </div>
-  );
-}
 
 function ProfileImage() {
   return (
@@ -48,7 +16,7 @@ function ProfileImage() {
       transition={{ delay: 0.3, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
       className="relative flex items-center justify-center"
     >
-      <div className="portrait-aura cursor-pointer">
+      <div className="portrait-aura">
         <div className="portrait-aura__frame w-[310px] h-[310px] sm:w-[370px] sm:h-[370px] lg:w-[410px] lg:h-[410px]">
           <img
             src="/profile.png"
@@ -64,11 +32,9 @@ function ProfileImage() {
 export default function Hero() {
   return (
     <section id="home" className="relative min-h-screen flex items-center overflow-hidden">
-      <FloatingBubbles />
-
       <div className="max-w-[1400px] mx-auto px-6 sm:px-10 lg:px-20 w-full pt-24 pb-16 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          <div className="flex flex-col gap-6 lg:gap-8 order-2 lg:order-1">
+          <div className="flex flex-col gap-6 lg:gap-7 order-2 lg:order-1">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -79,52 +45,44 @@ export default function Hero() {
               Open to full-time & freelance roles
             </motion.div>
 
-            <motion.h1
-              initial={{ opacity: 0, y: 28 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.15, duration: 0.7 }}
-              className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-[1.08]"
-            >
-              Senior{' '}
-              <span className="gradient-text">Full Stack</span>
-              <br />
-              Developer
-            </motion.h1>
-
             <motion.div
               initial={{ opacity: 0, y: 28 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3, duration: 0.7 }}
-              className="glass-strong rounded-2xl p-5 sm:p-6 neon-border max-w-xl"
+              transition={{ delay: 0.12, duration: 0.7 }}
             >
-              <p className="text-gray-300 text-base sm:text-lg leading-relaxed mb-3">
-                Hi, I'm <span className="text-white font-semibold">{personalInfo.name.split(' ')[0]}</span> —{' '}
-                <TypeAnimation
-                  sequence={[
-                    'Senior Full Stack Developer',
-                    2200,
-                    'React & Node.js Developer',
-                    2200,
-                    'Production Web Apps & SaaS',
-                    2200,
-                  ]}
-                  wrapper="span"
-                  speed={45}
-                  repeat={Infinity}
-                  preRenderFirstString
-                  className="text-primary font-semibold"
-                />
-              </p>
-              <p className="text-gray-500 text-sm leading-relaxed">
-                {personalInfo.yearsOfExperience}+ years shipping production apps for 500+ users — React, Node.js, TypeScript, and hands-on AI integration experience.
+              <h1 className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-white leading-[1.05] tracking-tight">
+                {personalInfo.name.split(' ')[0]}
+                <br />
+                <span className="gradient-text">{personalInfo.name.split(' ').slice(1).join(' ')}</span>
+              </h1>
+              <p className="mt-4 font-display text-xl sm:text-2xl md:text-3xl font-semibold text-slate-200">
+                Senior Full Stack Developer
               </p>
             </motion.div>
 
             <motion.div
               initial={{ opacity: 0, y: 28 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.45, duration: 0.7 }}
-              className="flex flex-col sm:flex-row gap-4"
+              transition={{ delay: 0.28, duration: 0.7 }}
+              className="glass-strong rounded-2xl p-5 sm:p-6 neon-border max-w-xl"
+            >
+              <p className="text-slate-200 text-base sm:text-lg leading-relaxed mb-2">
+                Building production SaaS with{' '}
+                <span className="text-primary font-semibold">React</span>,{' '}
+                <span className="text-primary font-semibold">Node.js</span> &{' '}
+                <span className="text-primary font-semibold">TypeScript</span>
+                — including hands-on AI integration.
+              </p>
+              <p className="text-slate-400 text-sm leading-relaxed">
+                {personalInfo.yearsOfExperience}+ years shipping apps used by 500+ people.
+              </p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 28 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.42, duration: 0.7 }}
+              className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4"
             >
               <a
                 href="#projects"
@@ -155,8 +113,8 @@ export default function Hero() {
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 0.7, duration: 0.8 }}
-              className="flex items-center gap-4"
+              transition={{ delay: 0.6, duration: 0.7 }}
+              className="flex items-center gap-3"
             >
               {[
                 { icon: Github, href: personalInfo.github, label: 'GitHub' },
@@ -169,7 +127,7 @@ export default function Hero() {
                   target={label !== 'Email' ? '_blank' : undefined}
                   rel="noopener noreferrer"
                   aria-label={label}
-                  className="w-11 h-11 rounded-xl glass flex items-center justify-center text-gray-400 hover:text-primary hover:border-primary/30 transition-all duration-200 hover:-translate-y-0.5"
+                  className="w-11 h-11 rounded-xl glass flex items-center justify-center text-slate-300 hover:text-primary hover:border-primary/30 transition-all duration-200 hover:-translate-y-0.5"
                 >
                   <Icon size={18} />
                 </a>
@@ -188,8 +146,8 @@ export default function Hero() {
         onClick={(e) => { e.preventDefault(); scrollTo('#about'); }}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1.2 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-gray-500 hover:text-primary transition-colors motion-reduce:hidden"
+        transition={{ delay: 1.1 }}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-slate-400 hover:text-primary transition-colors motion-reduce:hidden"
         aria-label="Scroll to about section"
       >
         <span className="text-xs tracking-widest uppercase">Explore</span>

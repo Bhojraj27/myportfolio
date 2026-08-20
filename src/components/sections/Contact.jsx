@@ -6,6 +6,11 @@ import { GithubIcon as Github, LinkedinIcon as Linkedin } from '../ui/Icons';
 import { personalInfo } from '../../data/portfolio';
 import { SectionContainer, SectionHeading } from '../ui/SectionContainer';
 
+const fieldClass =
+  'w-full px-4 py-3 rounded-xl bg-white/[0.07] border border-white/20 text-white text-sm font-body placeholder:text-slate-500 focus:outline-none focus:border-primary/50 focus:bg-white/[0.09] transition-all disabled:opacity-60';
+
+const labelClass = 'block text-sm font-medium text-slate-200 mb-2';
+
 export default function Contact() {
   const [formState, setFormState] = useState({ name: '', email: '', subject: '', message: '' });
   const [status, setStatus] = useState('idle');
@@ -51,40 +56,46 @@ export default function Contact() {
               { name: 'subject', label: 'Subject', type: 'text', placeholder: 'Project inquiry' },
             ].map(({ name, label, type, placeholder }) => (
               <div key={name}>
-                <label className="block text-xs text-gray-500 font-mono mb-2">{label}</label>
+                <label htmlFor={`contact-${name}`} className={labelClass}>
+                  {label}
+                </label>
                 <input
+                  id={`contact-${name}`}
                   type={type}
                   value={formState[name]}
                   onChange={(e) => setFormState({ ...formState, [name]: e.target.value })}
                   placeholder={placeholder}
                   disabled={status === 'loading'}
-                  className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white text-sm font-body placeholder:text-gray-600 focus:outline-none focus:border-primary/40 focus:shadow-[0_0_15px_rgba(0,245,255,0.1)] transition-all disabled:opacity-60"
+                  className={fieldClass}
                   required
                 />
               </div>
             ))}
             <div>
-              <label className="block text-xs text-gray-500 font-mono mb-2">Message</label>
+              <label htmlFor="contact-message" className={labelClass}>
+                Message
+              </label>
               <textarea
+                id="contact-message"
                 value={formState.message}
                 onChange={(e) => setFormState({ ...formState, message: e.target.value })}
                 placeholder="Tell me about your project..."
                 rows={5}
                 disabled={status === 'loading'}
-                className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white text-sm font-body placeholder:text-gray-600 focus:outline-none focus:border-primary/40 focus:shadow-[0_0_15px_rgba(0,245,255,0.1)] transition-all resize-none disabled:opacity-60"
+                className={`${fieldClass} resize-none`}
                 required
               />
             </div>
 
             {status === 'error' && (
-              <div className="flex items-start gap-2 text-red-400 text-sm bg-red-500/10 border border-red-500/20 rounded-xl px-4 py-3">
+              <div className="flex items-start gap-2 text-red-300 text-sm bg-red-500/15 border border-red-500/30 rounded-xl px-4 py-3">
                 <AlertCircle size={16} className="shrink-0 mt-0.5" />
                 <span>{errorMessage}</span>
               </div>
             )}
 
             {status === 'success' && (
-              <div className="flex items-center gap-2 text-green-400 text-sm bg-green-500/10 border border-green-500/20 rounded-xl px-4 py-3">
+              <div className="flex items-center gap-2 text-green-300 text-sm bg-green-500/15 border border-green-500/30 rounded-xl px-4 py-3">
                 <CheckCircle2 size={16} />
                 <span>Message sent! I'll get back to you soon.</span>
               </div>
@@ -93,7 +104,7 @@ export default function Contact() {
             <button
               type="submit"
               disabled={status === 'loading'}
-              className="w-full flex items-center justify-center gap-2.5 px-6 py-4 rounded-xl bg-gradient-to-r from-primary to-accent text-navy font-semibold text-sm hover:shadow-[0_0_30px_rgba(0,245,255,0.4)] transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] disabled:opacity-70 disabled:hover:scale-100"
+              className="w-full flex items-center justify-center gap-2.5 px-6 py-4 rounded-xl bg-gradient-to-r from-accent to-accent-soft text-white font-semibold text-sm hover:shadow-[0_0_28px_rgba(234,88,12,0.35)] transition-all duration-300 hover:scale-[1.01] active:scale-[0.98] disabled:opacity-70 disabled:hover:scale-100"
             >
               {status === 'loading' ? (
                 <>
@@ -117,7 +128,7 @@ export default function Contact() {
 
         <div className="order-1 lg:order-2">
           <div className="glass-strong rounded-2xl p-6 sm:p-8 neon-border h-full">
-            <p className="text-gray-300 text-base leading-relaxed mb-8">
+            <p className="text-slate-200 text-base leading-relaxed mb-8">
               I'm open to full-time roles, freelance projects, and collaborations.
               Send a message — I typically respond within 24 hours.
             </p>
@@ -129,15 +140,17 @@ export default function Contact() {
                 { icon: Phone, label: 'Phone', value: personalInfo.phone, href: `tel:${personalInfo.phone}` },
               ].map(({ icon: Icon, label, value, href }) => (
                 <div key={label} className="flex items-center gap-4 text-sm">
-                  <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+                  <div className="w-10 h-10 rounded-lg bg-primary/15 border border-primary/20 flex items-center justify-center shrink-0">
                     <Icon size={16} className="text-primary" />
                   </div>
                   <div className="min-w-0">
-                    <span className="text-gray-500 block text-xs mb-0.5">{label}</span>
+                    <span className="text-slate-300 block text-xs mb-0.5 font-medium">{label}</span>
                     {href ? (
-                      <a href={href} className="text-gray-300 hover:text-primary transition-colors">{value}</a>
+                      <a href={href} className="text-white hover:text-primary transition-colors">
+                        {value}
+                      </a>
                     ) : (
-                      <span className="text-gray-300">{value}</span>
+                      <span className="text-white">{value}</span>
                     )}
                   </div>
                 </div>
@@ -145,13 +158,13 @@ export default function Contact() {
             </div>
 
             <div className="flex gap-3">
-              <a href={personalInfo.github} target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-xl glass flex items-center justify-center text-gray-400 hover:text-primary hover:border-primary/30 transition-all hover:scale-110">
+              <a href={personalInfo.github} target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-xl glass flex items-center justify-center text-slate-300 hover:text-primary hover:border-primary/30 transition-all hover:scale-105">
                 <Github size={20} />
               </a>
-              <a href={personalInfo.linkedin} target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-xl glass flex items-center justify-center text-gray-400 hover:text-primary hover:border-primary/30 transition-all hover:scale-110">
+              <a href={personalInfo.linkedin} target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-xl glass flex items-center justify-center text-slate-300 hover:text-primary hover:border-primary/30 transition-all hover:scale-105">
                 <Linkedin size={20} />
               </a>
-              <a href={`mailto:${personalInfo.email}`} className="w-12 h-12 rounded-xl glass flex items-center justify-center text-gray-400 hover:text-primary hover:border-primary/30 transition-all hover:scale-110">
+              <a href={`mailto:${personalInfo.email}`} className="w-12 h-12 rounded-xl glass flex items-center justify-center text-slate-300 hover:text-primary hover:border-primary/30 transition-all hover:scale-105">
                 <Mail size={20} />
               </a>
             </div>
