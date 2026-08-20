@@ -7,6 +7,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import { navLinks } from '../../data/portfolio';
 import { scrollToSection, getLenis } from '../../utils/scrollTo';
+import BrandLogo from './BrandLogo';
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -89,23 +90,24 @@ export default function Navbar() {
               <a
                 href="#home"
                 onClick={(e) => { e.preventDefault(); scrollTo('#home'); }}
-                className="flex items-center gap-2.5 group"
+                className="group"
+                aria-label="Bhojraj Chavan — home"
               >
-                <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-primary to-electric-purple flex items-center justify-center group-hover:shadow-[0_0_20px_rgba(59,130,246,0.35)] transition-shadow font-display font-bold text-sm text-white">
-                  BC
-                </div>
-                <span className="font-display text-base font-bold text-white hidden sm:block">
-                  bhojraj<span className="text-primary">.dev</span>
-                </span>
+                <BrandLogo
+                  size={36}
+                  showWordmark
+                  className="transition-opacity group-hover:opacity-90"
+                  wordmarkClassName="text-base hidden sm:inline"
+                />
               </a>
             ) : (
-              <Link href="/" className="flex items-center gap-2.5 group">
-                <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-primary to-electric-purple flex items-center justify-center group-hover:shadow-[0_0_20px_rgba(59,130,246,0.35)] transition-shadow font-display font-bold text-sm text-white">
-                  BC
-                </div>
-                <span className="font-display text-base font-bold text-white hidden sm:block">
-                  bhojraj<span className="text-primary">.dev</span>
-                </span>
+              <Link href="/" className="group" aria-label="Bhojraj Chavan — home">
+                <BrandLogo
+                  size={36}
+                  showWordmark
+                  className="transition-opacity group-hover:opacity-90"
+                  wordmarkClassName="text-base hidden sm:inline"
+                />
               </Link>
             )}
 
@@ -168,9 +170,7 @@ export default function Navbar() {
               className="fixed top-0 right-0 bottom-0 w-[280px] sm:w-[320px] bg-navy-dark/95 backdrop-blur-2xl border-l border-white/5 z-[101] md:hidden"
             >
               <div className="flex items-center justify-between p-6 border-b border-white/5">
-                <span className="font-display text-base font-bold text-white">
-                  bhojraj<span className="text-primary">.dev</span>
-                </span>
+                <BrandLogo size={32} showWordmark wordmarkClassName="text-base" />
                 <button
                   onClick={() => setIsMobileOpen(false)}
                   className="text-gray-400 hover:text-white p-1"

@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { personalInfo } from '../data/portfolio';
+import BrandLogo from './ui/BrandLogo';
 
 const DURATION = 900;
 
@@ -44,8 +45,8 @@ export default function LoadingScreen({ onComplete }) {
       aria-label="Loading portfolio"
     >
       <div className="relative z-10 text-center px-6">
-        <div className="w-14 h-14 mx-auto mb-5 rounded-2xl bg-gradient-to-br from-primary to-electric-purple flex items-center justify-center font-display font-bold text-lg text-white">
-          BC
+        <div className="mx-auto mb-5 w-fit">
+          <BrandLogo size={56} />
         </div>
         <p className="font-display text-base text-white mb-1">{personalInfo.name}</p>
         <p className="text-sm text-gray-500 mb-6">{personalInfo.title}</p>

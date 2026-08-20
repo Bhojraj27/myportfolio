@@ -4,6 +4,7 @@ import { Mail, ArrowUp } from 'lucide-react';
 import { GithubIcon as Github, LinkedinIcon as Linkedin } from './Icons';
 import { personalInfo } from '../../data/portfolio';
 import { scrollToSection, getLenis } from '../../utils/scrollTo';
+import BrandLogo from './BrandLogo';
 
 const scrollTo = (href) => scrollToSection(href);
 
@@ -19,13 +20,8 @@ export default function Footer() {
       <div className="max-w-[1400px] mx-auto px-6 sm:px-10 lg:px-20 py-12 sm:py-16">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 md:gap-12">
           <div>
-            <div className="flex items-center gap-2.5 mb-4">
-              <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-primary to-electric-purple flex items-center justify-center shrink-0 font-display font-bold text-sm text-white">
-                BC
-              </div>
-              <span className="font-display text-lg font-bold text-white">
-                bhojraj<span className="text-primary">.dev</span>
-              </span>
+            <div className="mb-4">
+              <BrandLogo size={40} showWordmark wordmarkClassName="text-lg" />
             </div>
             <p className="text-gray-500 text-sm leading-relaxed">
               Full-stack developer building scalable SaaS and AI-powered web applications.

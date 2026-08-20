@@ -1,10 +1,40 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" role="img" aria-label="Bhojraj Chavan">
   <defs>
-    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#00F5FF;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#7C3AED;stop-opacity:1" />
+    <linearGradient id="plate" x1="6" y1="4" x2="58" y2="60" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1D4ED8"/>
+      <stop offset="0.5" stop-color="#3B82F6"/>
+      <stop offset="1" stop-color="#4338CA"/>
     </linearGradient>
   </defs>
-  <rect width="100" height="100" rx="20" fill="#0a0e1a"/>
-  <text x="50" y="62" font-family="monospace" font-size="40" font-weight="bold" fill="url(#grad)" text-anchor="middle">BC</text>
+
+  <rect width="64" height="64" rx="15" fill="url(#plate)"/>
+  <rect x="1.5" y="1.5" width="61" height="61" rx="13.5" stroke="#FFFFFF" stroke-opacity="0.22" stroke-width="1.5"/>
+
+  <!-- Geometric BC monogram (constructed paths, not typed text) -->
+  <g fill="#FFFFFF" fill-rule="evenodd">
+    <!-- Upper B bowl with counter -->
+    <path d="M15 15h15.2c5.6 0 9.8 3.6 9.8 8.4S35.8 31.8 30.2 31.8H15V15zm5.8 5.4v5.6h9.2c2.2 0 3.8-1.4 3.8-2.8s-1.6-2.8-3.8-2.8H20.8z"/>
+    <!-- Lower B bowl with counter -->
+    <path d="M15 31.8h16.4c6.1 0 10.8 3.9 10.8 9.1S37.5 50 31.4 50H15V31.8zm5.8 5.5v7.2h10.4c2.5 0 4.4-1.6 4.4-3.6s-1.9-3.6-4.4-3.6H20.8z"/>
+  </g>
+
+  <!-- Interlocking C (open ring) -->
+  <path
+    d="M49 21.5c-2.3-3.8-6.5-6.2-11.4-6.2-5.8 0-10.5 3.2-12.4 7.8"
+    stroke="#FFFFFF"
+    stroke-width="5"
+    stroke-linecap="round"
+    fill="none"
+  />
+  <path
+    d="M25.2 41c1.9 4.5 6.6 7.6 12.4 7.6 4.9 0 9.1-2.4 11.4-6.2"
+    stroke="#FFFFFF"
+    stroke-width="5"
+    stroke-linecap="round"
+    fill="none"
+  />
+
+  <!-- Accent signal node at C opening -->
+  <circle cx="49.5" cy="32" r="4.2" fill="#EA580C"/>
+  <circle cx="49.5" cy="32" r="1.7" fill="#FFFFFF"/>
 </svg>

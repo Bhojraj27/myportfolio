@@ -41,6 +41,14 @@ export const metadata = {
   ],
   authors: [{ name: 'Bhojraj Chavan', url: siteUrl }],
   creator: 'Bhojraj Chavan',
+  icons: {
+    icon: [
+      { url: '/brand/logo-mark.png', type: 'image/png' },
+      { url: '/brand/logo-mark.svg', type: 'image/svg+xml' },
+    ],
+    shortcut: '/brand/logo-mark.png',
+    apple: '/brand/logo-mark.png',
+  },
   openGraph: {
     type: 'website',
     locale: 'en_IN',
