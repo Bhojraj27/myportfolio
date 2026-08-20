@@ -1,74 +1,80 @@
 # Design System Master File
 
 > **LOGIC:** When building a specific page, first check `design-system/pages/[page-name].md`.
-> If that file exists, its rules **override** this Master file.
+> If that page file exists, its rules **override** this Master file.
 > If not, strictly follow the rules below.
 
 ---
 
-**Project:** Bhojraj Portfolio
-**Generated:** 2026-08-17 15:08:13
-**Category:** SaaS (General)
+**Project:** Bhojraj Portfolio  
+**Updated:** 2026-08-20  
+**Style:** Dark Aurora Glassmorphism  
+**Category:** Developer Portfolio
 
 ---
 
 ## Global Rules
 
-### Color Palette
+### Color Palette (live brand)
 
 | Role | Hex | CSS Variable |
 |------|-----|--------------|
-| Primary | `#2563EB` | `--color-primary` |
-| On Primary | `#FFFFFF` | `--color-on-primary` |
-| Secondary | `#3B82F6` | `--color-secondary` |
-| On Secondary | `#000000` | `--color-on-secondary` |
-| Accent/CTA | `#EA580C` | `--color-accent` |
-| On Accent/CTA | `#000000` | `--color-on-accent` |
-| Background | `#F8FAFC` | `--color-background` |
-| Foreground | `#1E293B` | `--color-foreground` |
-| Card | `#FFFFFF` | `--color-card` |
-| Card Foreground | `#1E293B` | `--color-card-foreground` |
-| Muted | `#E9EFF8` | `--color-muted` |
-| Muted Foreground | `#475569` | `--color-muted-foreground` |
-| Border | `#E2E8F0` | `--color-border` |
-| Destructive | `#DC2626` | `--color-destructive` |
-| On Destructive | `#FFFFFF` | `--color-on-destructive` |
-| Ring | `#2563EB` | `--color-ring` |
+| Primary | `#3B82F6` | `--color-primary` |
+| Secondary | `#60A5FA` | `--color-secondary` |
+| Accent / CTA | `#EA580C` | `--color-accent` |
+| Accent Soft | `#FB923C` | `--color-accent-soft` |
+| Indigo | `#818CF8` | `--color-electric-purple` |
+| Cyan | `#38BDF8` | `--color-neon-blue` |
+| Background | `#0A0E27` | `--color-navy` |
+| Background Deep | `#050814` | `--color-navy-dark` |
+| Foreground | `#E2E8F0` / `#FFFFFF` | — |
+| Muted text | `#94A3B8` | — |
 
-**Color Notes:** Trust blue + orange CTA contrast [Accent adjusted from #F97316]
+**Color notes:** Dark navy base + trust blue primary + orange CTA. Aurora orbs use blue / indigo / muted orange / cyan at low opacity.
 
 ### Typography
 
-- **Heading Font:** Plus Jakarta Sans
-- **Body Font:** Plus Jakarta Sans
-- **Mood:** friendly, modern, saas, clean, approachable, professional
-- **Google Fonts:** [Plus Jakarta Sans + Plus Jakarta Sans](https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap)
+- **Display / headings:** Space Grotesk
+- **Body:** Plus Jakarta Sans
+- **Mono:** JetBrains Mono
+- **Mood:** modern, technical, professional, approachable
 
-**CSS Import:**
-```css
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
-```
-
-### Spacing Variables
+### Glass Tokens (Dark Aurora)
 
 | Token | Value | Usage |
 |-------|-------|-------|
-| `--space-xs` | `4px` / `0.25rem` | Tight gaps |
-| `--space-sm` | `8px` / `0.5rem` | Icon gaps, inline spacing |
-| `--space-md` | `16px` / `1rem` | Standard padding |
-| `--space-lg` | `24px` / `1.5rem` | Section padding |
-| `--space-xl` | `32px` / `2rem` | Large gaps |
-| `--space-2xl` | `48px` / `3rem` | Section margins |
-| `--space-3xl` | `64px` / `4rem` | Hero padding |
+| `--glass-bg` | white 8–10% → navy tint gradient | `.glass` |
+| `--glass-bg-strong` | white 12–14% → navy tint | `.glass-strong` |
+| `--glass-blur` | `24px` (mobile `18px`) | Standard cards |
+| `--glass-blur-strong` | `32px` (mobile `22px`) | Featured panels |
+| `--glass-border` | `rgba(255,255,255,0.2–0.26)` | Edge definition |
+| `--glass-highlight` | `inset 0 1px 0 rgba(255,255,255,0.22)` | Specular top light |
+| `--glass-shadow` | soft black depth + hairline | Resting state |
+| `--glass-shadow-hover` | deeper + faint blue glow | Hover |
 
-### Shadow Depths
+**Rules:**
+- Glass must sit over colorful aurora depth — never solid opaque navy slabs
+- Keep text contrast ≥ 4.5:1 on frosted surfaces
+- Prefer `.glass` / `.glass-strong` utilities over one-off `bg-navy/80` fills
+- Aurora rim (`.neon-border`): blue → indigo → cyan → soft orange, subtle not neon-gimmick
 
-| Level | Value | Usage |
-|-------|-------|-------|
-| `--shadow-sm` | `0 1px 2px rgba(0,0,0,0.05)` | Subtle lift |
-| `--shadow-md` | `0 4px 6px rgba(0,0,0,0.1)` | Cards, buttons |
-| `--shadow-lg` | `0 10px 15px rgba(0,0,0,0.1)` | Modals, dropdowns |
-| `--shadow-xl` | `0 20px 25px rgba(0,0,0,0.15)` | Hero images, featured cards |
+### Ambient Aurora
+
+- Fixed `.aurora-layer` with soft radial orbs (blue / indigo / muted orange / cyan)
+- `pointer-events: none`, low opacity (~0.22–0.35)
+- Drift animations disabled under `prefers-reduced-motion`
+
+### Spacing
+
+| Token | Value |
+|-------|-------|
+| `--space-xs` | `4px` |
+| `--space-sm` | `8px` |
+| `--space-md` | `16px` |
+| `--space-lg` | `24px` |
+| `--space-xl` | `32px` |
+| `--space-2xl` | `48px` |
+| `--space-3xl` | `64px` |
 
 ---
 
@@ -76,139 +82,56 @@
 
 ### Buttons
 
-```css
-/* Primary Button */
-.btn-primary {
-  background: #EA580C;
-  color: white;
-  padding: 12px 24px;
-  border-radius: 8px;
-  font-weight: 600;
-  transition: all 200ms ease;
-  cursor: pointer;
-}
-
-.btn-primary:hover {
-  opacity: 0.9;
-  transform: translateY(-1px);
-}
-
-/* Secondary Button */
-.btn-secondary {
-  background: transparent;
-  color: #2563EB;
-  border: 2px solid #2563EB;
-  padding: 12px 24px;
-  border-radius: 8px;
-  font-weight: 600;
-  transition: all 200ms ease;
-  cursor: pointer;
-}
-```
+- **Primary:** orange gradient CTA (`#EA580C` → `#FB923C`), white text, hover lift + glow
+- **Secondary:** frosted glass fill, white text, hover primary border tint
 
 ### Cards
 
-```css
-.card {
-  background: #F8FAFC;
-  border-radius: 12px;
-  padding: 24px;
-  box-shadow: var(--shadow-md);
-  transition: all 200ms ease;
-  cursor: pointer;
-}
+Use `.glass` or `.glass-strong` + `rounded-2xl`. Optional `.neon-border` for featured surfaces. `.card-hover` for lift.
 
-.card:hover {
-  box-shadow: var(--shadow-lg);
-  transform: translateY(-2px);
-}
-```
+### Tech chips
 
-### Inputs
+Frosted chip: white 8% fill, white 15% border, specular inset, brand-colored icon.
 
-```css
-.input {
-  padding: 12px 16px;
-  border: 1px solid #E2E8F0;
-  border-radius: 8px;
-  font-size: 16px;
-  transition: border-color 200ms ease;
-}
+### Navbar
 
-.input:focus {
-  border-color: #2563EB;
-  outline: none;
-  box-shadow: 0 0 0 3px #2563EB20;
-}
-```
-
-### Modals
-
-```css
-.modal-overlay {
-  background: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(4px);
-}
-
-.modal {
-  background: white;
-  border-radius: 16px;
-  padding: 32px;
-  box-shadow: var(--shadow-xl);
-  max-width: 500px;
-  width: 90%;
-}
-```
+Scrolled state uses `.glass` with bottom border — not opaque navy.
 
 ---
 
 ## Style Guidelines
 
-**Style:** Glassmorphism
-
-**Keywords:** Frosted glass, transparent, blurred background, layered, vibrant background, light source, depth, multi-layer
-
-**Best For:** Modern SaaS, financial dashboards, high-end corporate, lifestyle apps, modal overlays, navigation
-
-**Key Effects:** Backdrop blur (10-20px), subtle border (1px solid rgba white 0.2), light reflection, Z-depth
+**Style:** Dark Aurora Glassmorphism  
+**Keywords:** Frosted glass, translucent, aurora depth, specular edge, layered, soft blur, brand blue/orange  
+**Key effects:** Backdrop blur 18–32px, translucent white overlays, top light reflection, soft aurora orbs behind content  
+**Avoid:** Purple SaaS rainbow glass, light Liquid Glass gold, opaque navy cards that kill blur, heavy neon glow spam
 
 ### Page Pattern
 
-**Pattern Name:** Hero + Features + CTA
-
-- **Conversion Strategy:** Deep CTA placement. For CTA label text, verify at least 4.5:1 against the button fill; use 7:1 only when the product explicitly targets AAA normal-text contrast. Keep focus and component boundaries independently visible. Disable hero parallax under reduced motion and render its static final state.
-- **CTA Placement:** Hero (sticky) + Bottom
-- **Section Order:** Hero with headline/image > Value prop > Key features (3-5) > CTA section > Footer
+Hero (brand + one CTA group + portrait) → Proof → About → Skills → Experience → Projects → Contact
 
 ---
 
 ## Anti-Patterns (Do NOT Use)
 
-- ❌ Excessive animation
-- ❌ Dark mode by default
-
-### Additional Forbidden Patterns
-
-- ❌ **Emojis as icons** — Use SVG icons (Heroicons, Lucide, Simple Icons)
-- ❌ **Missing cursor:pointer** — All clickable elements must have cursor:pointer
-- ❌ **Layout-shifting hovers** — Avoid scale transforms that shift layout
-- ❌ **Low contrast text** — Maintain 4.5:1 minimum contrast ratio
-- ❌ **Instant state changes** — Always use transitions (150-300ms)
-- ❌ **Invisible focus states** — Focus states must be visible for a11y
+- Opaque navy cards that hide frost effect
+- Purple-on-white / purple-indigo AI template themes
+- Emojis as icons
+- Missing `cursor:pointer` on clickables
+- Layout-shifting scale on dense UI
+- Low-contrast muted text on glass
+- Instant state changes (use 150–300ms transitions)
+- Invisible focus rings
+- Aurora / spin motion when `prefers-reduced-motion: reduce`
 
 ---
 
 ## Pre-Delivery Checklist
 
-Before delivering any UI code, verify:
-
-- [ ] No emojis used as icons (use SVG instead)
-- [ ] All icons from consistent icon set (Heroicons/Lucide)
-- [ ] `cursor-pointer` on all clickable elements
-- [ ] Hover states with smooth transitions (150-300ms)
-- [ ] Light mode: text contrast 4.5:1 minimum
-- [ ] Focus states visible for keyboard navigation
-- [ ] `prefers-reduced-motion` respected
+- [ ] Cards look frosted (aurora shows through), not flat panels
+- [ ] Text contrast ≥ 4.5:1 on glass
+- [ ] Focus states visible
+- [ ] `prefers-reduced-motion` respected for aurora / portrait spin
 - [ ] Responsive: 375px, 768px, 1024px, 1440px
-- [ ] No content hidden behind fixed navbars
 - [ ] No horizontal scroll on mobile
+- [ ] Brand stays blue + orange (not purple template)

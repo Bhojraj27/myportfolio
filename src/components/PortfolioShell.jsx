@@ -47,6 +47,12 @@ export default function PortfolioShell({ children, showFooter = true }) {
           Skip to content
         </a>
         <AnimatedBackground />
+        <div className="aurora-layer" aria-hidden="true">
+          <div className="aurora-orb aurora-orb--1" />
+          <div className="aurora-orb aurora-orb--2" />
+          <div className="aurora-orb aurora-orb--3" />
+          <div className="aurora-orb aurora-orb--4" />
+        </div>
         <div className="relative z-10">
           <ScrollToTop />
           <ScrollProgress />

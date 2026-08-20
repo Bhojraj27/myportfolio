@@ -79,8 +79,8 @@ export default function Navbar() {
         transition={{ duration: 0.3, ease: 'easeInOut' }}
         className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-300 ${
           isScrolled
-            ? 'bg-navy/80 backdrop-blur-xl border-b border-white/5 shadow-lg shadow-black/10'
-            : 'bg-transparent'
+            ? 'glass border-b border-white/15 shadow-[0_8px_32px_rgba(0,0,0,0.25)]'
+            : 'bg-transparent border-b border-transparent'
         }`}
       >
         <div className="max-w-[1400px] mx-auto px-6 sm:px-10 lg:px-20">
@@ -109,7 +109,7 @@ export default function Navbar() {
               </Link>
             )}
 
-            <div className="hidden md:flex items-center gap-1 bg-white/[0.03] backdrop-blur-sm rounded-full px-1.5 py-1 border border-white/5">
+            <div className="hidden md:flex items-center gap-1 glass rounded-full px-1.5 py-1 border border-white/15">
               {navLinks.map((link) => {
                 const isActive = activeSection === link.href.replace('#', '');
                 return (

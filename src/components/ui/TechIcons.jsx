@@ -145,7 +145,7 @@ export function TechChip({ name, size = 'md', showLabel = true }) {
   return (
     <span
       title={name}
-      className={`inline-flex items-center ${s.wrap} rounded-xl bg-white/[0.04] border border-white/10 text-gray-300 font-medium transition-all duration-300 hover:border-primary/35 hover:bg-primary/10 hover:text-white hover:-translate-y-0.5`}
+      className={`inline-flex items-center ${s.wrap} rounded-xl bg-white/[0.08] border border-white/15 text-gray-200 font-medium shadow-[inset_0_1px_0_rgba(255,255,255,0.12)] transition-all duration-300 hover:border-primary/40 hover:bg-primary/12 hover:text-white hover:-translate-y-0.5`}
     >
       <Icon size={s.icon} style={{ color }} className="shrink-0" aria-hidden />
       {showLabel && <span className="truncate max-w-[9rem]">{name}</span>}
@@ -158,7 +158,7 @@ export function TechIconBadge({ name, size = 20 }) {
   return (
     <span
       title={name}
-      className="inline-flex items-center justify-center w-9 h-9 rounded-lg bg-white/[0.04] border border-white/10 transition-all duration-300 hover:border-primary/40 hover:bg-primary/10 hover:scale-110"
+      className="inline-flex items-center justify-center w-9 h-9 rounded-lg bg-white/[0.08] border border-white/15 shadow-[inset_0_1px_0_rgba(255,255,255,0.12)] transition-all duration-300 hover:border-primary/40 hover:bg-primary/10 hover:scale-110"
     >
       <Icon size={size} style={{ color }} aria-hidden />
     </span>
