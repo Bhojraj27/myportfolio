@@ -9,6 +9,7 @@ import Footer from '@/components/ui/Footer';
 import ScrollProgress from '@/components/ui/ScrollProgress';
 import SmoothScrollProvider from '@/providers/SmoothScrollProvider';
 import PortfolioChat from '@/components/PortfolioChat';
+import SiteMascot from '@/components/SiteMascot';
 import { getLenis } from '@/utils/scrollTo';
 
 const AnimatedBackground = dynamic(() => import('@/components/three/AnimatedBackground'), { ssr: false });
@@ -75,6 +76,7 @@ export default function PortfolioShell({ children, showFooter = true }) {
           {showFooter && <Footer />}
         </div>
         <PortfolioChat />
+        {!loading && <SiteMascot />}
         {loading && <LoadingScreen onComplete={handleLoadDone} />}
       </div>
     </SmoothScrollProvider>

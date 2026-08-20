@@ -36,6 +36,11 @@ export default function Contact() {
 
       setStatus('success');
       setFormState({ name: '', email: '', subject: '', message: '' });
+      try {
+        window.dispatchEvent(new CustomEvent('portfolio:mascot-celebrate'));
+      } catch {
+        /* ignore */
+      }
       setTimeout(() => setStatus('idle'), 5000);
     } catch (err) {
       setStatus('error');
