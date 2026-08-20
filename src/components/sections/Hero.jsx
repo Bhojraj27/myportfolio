@@ -56,7 +56,7 @@ export default function Hero() {
                 <span className="gradient-text">{personalInfo.name.split(' ').slice(1).join(' ')}</span>
               </h1>
               <p className="mt-4 font-display text-xl sm:text-2xl md:text-3xl font-semibold text-slate-200">
-                Senior Full Stack Developer
+                {personalInfo.title}
               </p>
             </motion.div>
 

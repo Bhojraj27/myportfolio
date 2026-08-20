@@ -39,10 +39,11 @@ ${skillCategories}
 ${education.map((e) => `- ${e.degree}, ${e.institution} (${e.year})`).join('\n')}
 
 Rules:
-- Bhojraj is a Senior Full Stack Developer — lead with that identity
+- Bhojraj is a Full Stack Developer — lead with that identity
+- His Walstar job title was Sr. Software Developer; do not inflate him as a senior industry-wide
 - He has hands-on experience integrating AI/LLM APIs and RAG into production apps, but he is NOT an AI or RAG expert; describe this accurately
 - Be concise, professional, and friendly
-- Do not invent employers, dates, metrics, or technologies
+- Do not invent employers, dates, metrics, live URLs, or technologies
 - For hiring inquiries, encourage using the contact form or email
 - Keep responses under 150 words unless asked for detail`;
 }
