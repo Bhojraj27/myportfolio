@@ -99,21 +99,21 @@ export default function PortfolioChat() {
             initial={{ opacity: 0, y: 20, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
-            className="fixed bottom-24 right-6 z-[200] w-[360px] max-w-[calc(100vw-3rem)] h-[480px] max-h-[70vh] glass-strong rounded-2xl border border-white/10 flex flex-col overflow-hidden shadow-2xl"
+            className="fixed bottom-24 right-6 z-[200] w-[360px] max-w-[calc(100vw-3rem)] h-[480px] max-h-[70vh] rounded-2xl border border-white/15 flex flex-col overflow-hidden shadow-2xl bg-[#0c1228]"
           >
-            <div className="px-4 py-3 border-b border-white/10 flex items-center gap-2">
+            <div className="px-4 py-3 border-b border-white/10 flex items-center gap-2 bg-[#111827]">
               <Bot size={18} className="text-primary" />
               <span className="font-display font-semibold text-white text-sm">Ask about Bhojraj</span>
             </div>
 
-            <div className="flex-1 overflow-y-auto p-4 space-y-3">
+            <div className="flex-1 overflow-y-auto p-4 space-y-3 bg-[#0c1228]">
               {messages.map((m, i) => (
                 <div key={i} className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}>
                   <div
                     className={`max-w-[85%] px-3 py-2 rounded-xl text-sm leading-relaxed ${
                       m.role === 'user'
-                        ? 'bg-primary/20 text-white border border-primary/30'
-                        : 'bg-white/5 text-gray-300 border border-white/10'
+                        ? 'bg-primary text-white'
+                        : 'bg-[#1a2338] text-gray-200 border border-white/10'
                     }`}
                   >
                     <ChatMessageContent content={m.content} isUser={m.role === 'user'} />
@@ -122,7 +122,7 @@ export default function PortfolioChat() {
               ))}
               {loading && (
                 <div className="flex justify-start">
-                  <div className="px-3 py-2 rounded-xl bg-white/5 text-gray-400 text-sm flex items-center gap-2">
+                  <div className="px-3 py-2 rounded-xl bg-[#1a2338] border border-white/10 text-gray-400 text-sm flex items-center gap-2">
                     <Loader2 size={14} className="animate-spin" />
                     Thinking...
                   </div>
@@ -131,7 +131,7 @@ export default function PortfolioChat() {
               <div ref={bottomRef} />
             </div>
 
-            <div className="p-3 border-t border-white/10 flex gap-2">
+            <div className="p-3 border-t border-white/10 flex gap-2 bg-[#111827]">
               <input
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
@@ -142,7 +142,7 @@ export default function PortfolioChat() {
                   }
                 }}
                 placeholder="Ask about projects, skills..."
-                className="flex-1 px-3 py-2 rounded-xl bg-white/5 border border-white/10 text-white text-sm placeholder:text-gray-600 focus:outline-none focus:border-primary/40"
+                className="flex-1 px-3 py-2 rounded-xl bg-[#0c1228] border border-white/15 text-white text-sm placeholder:text-gray-500 focus:outline-none focus:border-primary/50"
               />
               <button
                 type="button"
