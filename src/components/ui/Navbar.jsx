@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback, useRef } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -14,10 +14,8 @@ export default function Navbar() {
   const router = useRouter();
   const isHome = pathname === '/';
   const [isScrolled, setIsScrolled] = useState(false);
-  const [hidden, setHidden] = useState(false);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
-  const lastScrollY = useRef(0);
 
   const scrollTo = useCallback((href) => {
     if (isHome) {
@@ -30,10 +28,7 @@ export default function Navbar() {
   useEffect(() => {
     const updateScrollState = () => {
       const currentY = getLenis()?.scroll ?? window.scrollY;
-
       setIsScrolled(currentY > 50);
-      setHidden(currentY > lastScrollY.current && currentY > 200);
-      lastScrollY.current = currentY;
 
       const sections = navLinks.map((l) => l.href.replace('#', ''));
       for (let i = sections.length - 1; i >= 0; i--) {
@@ -76,8 +71,8 @@ export default function Navbar() {
     <>
       <motion.nav
         initial={{ y: -100 }}
-        animate={{ y: hidden ? -100 : 0 }}
-        transition={{ duration: 0.3, ease: 'easeInOut' }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.35, ease: 'easeOut' }}
         className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-300 ${
           isScrolled
             ? 'glass border-b border-white/15 shadow-[0_8px_32px_rgba(0,0,0,0.25)]'
